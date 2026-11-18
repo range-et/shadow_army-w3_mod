@@ -1,0 +1,57 @@
+;meta[language=en]
+;meta[version=164]
+;id|key(hex)|key(str)|text
+2146700000||panel_ShadowMonarch|Shadow Monarch
+2146700001||panel_ShadowMonarchArmy|Army Settings
+2146700002||preset_Mods_miscellaneous_ShadowMonarch_ShadowMonarchArmy|Army Settings
+2146700003||preset_SM_Default|Default
+2146700004||option_SM_Enabled|Enable army (requires Trophy Necromancy)
+2146700005||option_SM_ArmySize|Army size (plus the trophy summon)
+2146700006||option_SM_DamagePercent|Army damage (%)
+2146700007||option_SM_SizePercent|Army size scale (%)
+2146700008||option_SM_UpkeepPerSecond|Stamina per unit / second (0 disables)
+2146700009||option_SM_Unit1|Army unit 1
+2146700010||option_SM_Unit2|Army unit 2
+2146700011||option_SM_Unit3|Army unit 3
+2146700012||option_SM_Unit4|Army unit 4
+2146700013||option_SM_Unit5|Army unit 5
+2146700014||option_SM_Unit6|Army unit 6
+2146700015||option_SM_Unit7|Army unit 7
+2146700016||option_SM_Unit8|Army unit 8
+2146700017||option_SM_Unit9|Army unit 9
+2146700018||option_SM_Unit10|Army unit 10
+2146700019||option_SM_Wraith|Wraith
+2146700020||SM_Wraith|Wraith
+2146700021||option_SM_Nekker|Nekker
+2146700022||SM_Nekker|Nekker
+2146700023||option_SM_Ghoul|Ghoul
+2146700024||SM_Ghoul|Ghoul
+2146700025||option_SM_Drowner|Drowner
+2146700026||SM_Drowner|Drowner
+2146700027||option_SM_Arachas|Arachas
+2146700028||SM_Arachas|Arachas
+2146700029||option_SM_Wyvern|Wyvern
+2146700030||SM_Wyvern|Wyvern
+2146700031||option_SM_Chort|Chort
+2146700032||SM_Chort|Chort
+2146700033||option_SM_Fiend|Fiend
+2146700034||SM_Fiend|Fiend
+2146700035||option_SM_Cockatrice|Cockatrice
+2146700036||SM_Cockatrice|Cockatrice
+2146700037||option_SM_Griffin|Griffin
+2146700038||SM_Griffin|Griffin
+2146700039||option_SM_Archgriffin|Archgriffin
+2146700040||SM_Archgriffin|Archgriffin
+2146700041||preset_value_SM_Wraith|Wraith
+2146700042||preset_value_SM_Nekker|Nekker
+2146700043||preset_value_SM_Ghoul|Ghoul
+2146700044||preset_value_SM_Drowner|Drowner
+2146700045||preset_value_SM_Arachas|Arachas
+2146700046||preset_value_SM_Wyvern|Wyvern
+2146700047||preset_value_SM_Chort|Chort
+2146700048||preset_value_SM_Fiend|Fiend
+2146700049||preset_value_SM_Cockatrice|Cockatrice
+2146700050||preset_value_SM_Griffin|Griffin
+2146700051||preset_value_SM_Archgriffin|Archgriffin
+2146700052||preset_value_SM_Default|Default
+2146700053||preset_value_|Custom
