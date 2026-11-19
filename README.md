@@ -35,7 +35,16 @@ Report problems using the [GitHub bug report form](https://github.com/range-et/s
 
 ## Build from source
 
-Build with `tools/compile.ps1` and package with `tools/package.ps1`. Use `tools/compile.ps1 -CompatibilityCheck` to compile with Trophy Necromancy for verification. See [the specification](spec.md) for implementation details.
+To reproduce the Vortex-tested rc1 ZIP from a clean checkout, run these commands from the repo root with PowerShell 7.6.9 on Windows. The packaging script uses the checked-in production files.
+
+```powershell
+pwsh -NoProfile -File .\tools\package.ps1
+Get-FileHash -Algorithm SHA256 .\dist\ShadowMonarch-1.0.0-rc1.zip
+```
+
+Expected SHA-256: `37b00479170d2ac0c6f297e6a8537e8ac6449070ca8deeda50279349b184b2ae`.
+
+After editing WitcherScript, regenerate the compiled blob with `tools/compile.ps1`. Use `tools/compile.ps1 -CompatibilityCheck` to compile with Trophy Necromancy for verification. See [the specification](spec.md) for implementation details.
 
 Downloaded reference mods are excluded from Git. See docs/reference-sources.md for their locations and the local reference layout needed by the compatibility/string-generation tools.
 
