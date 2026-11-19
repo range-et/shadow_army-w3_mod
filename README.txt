@@ -1,25 +1,55 @@
-# Shadow Monarch 1.0.0-rc1 — Trophy Necromancy Companion
+Shadow Monarch 1.0.0-rc1 — Public Beta
+Army Companion for Trophy Necromancy
 
-Build a mixed monster army alongside **Trophy Necromancy 5.01.01**, which is required. Target: Witcher 3 Remastered 5.01c / executable 5.0.0.1090142. Release candidate with partial combined gameplay verification; see docs/verification.md for passed cases and remaining checks.
+Requires Trophy Necromancy 5.01.01:
+https://www.nexusmods.com/witcher3/mods/12985
 
-Install Trophy Necromancy, then this ZIP through Vortex. Enable and deploy both mods and their settings XMLs. Own, read and equip the original necromancy book, and equip a supported trophy on Roach. Trophy Necromancy keeps its trophy summon, progression, health cost and cooldown; our army follows its combat activation signal.
+Target game build: The Witcher 3 Remastered 5.01c (5.0.0.1090142).
+Beta testing has covered ordinary combat, low-vitality recovery and a
+disposable-save reload and uninstall. The full monster roster still needs
+gameplay testing. Use a backup or disposable save while testing.
 
-Upgrading from the 0.1 standalone prototype: replace/disable that old Shadow Monarch version before enabling this package. Keep only one Shadow Monarch version active. Existing Trophy Necromancy progression is retained; the old WraithCount setting is ignored.
+Install and use
 
-Choose **0–10 army units**, plus a monster for each active slot. The trophy summon is additional. For four wraiths and two nekkers, choose size six; set units 1–4 to Wraith and 5–6 to Nekker. Size zero leaves Trophy Necromancy alone. There is no extra implicit trophy leader.
+1. Quit the game. In Vortex, disable any previous Shadow Monarch version
+   and deploy. If you ever installed Shadow Monarch manually, follow the
+   legacy file check below before installing the beta.
+2. Install Trophy Necromancy 5.01.01. In Vortex, use Mods > Install From
+   File for this ZIP. Enable both current mods and select Deploy.
+3. Load a game to initialize settings. Read and equip Trophy Necromancy's
+   book, and equip a supported trophy on Roach.
+4. Open Settings > Mods > Miscellaneous > Shadow Monarch > Army Settings.
 
-After installation, load a game once to initialize missing settings. Open Settings → Mods → Miscellaneous → Shadow Monarch → Army Settings. English menu text is included.
+Choose up to ten monsters. The army appears during eligible combat alongside
+the original trophy summon. Set army size to zero to use Trophy Necromancy
+alone. The default is four wraiths, 150% army damage, 75% visual size and
+one vitality point per second for the entire army. Set upkeep to zero to
+disable the extra vitality cost.
 
-Choices: Wraith, Nekker, Ghoul, Drowner, Arachas, Wyvern, Chort, Fiend, Cockatrice, Griffin and Archgriffin. All are generic base-game templates; each new choice still needs gameplay validation.
+Uninstall
 
-Defaults: four wraiths, 150% army damage, 75% visual size and **one vitality point per second for the entire army**, regardless of unit count. Set upkeep between 0 and 5 vitality/second; 0 disables it. Upkeep never consumes stamina or delays its regeneration, so Signs remain available. It applies only while at least one army unit is alive in eligible combat. At one vitality, only our army dissolves; it returns after at least ten seconds and 25% vitality recovery (and more than one vitality). Upkeep cannot kill Geralt. Trophy Necromancy's own summon costs are unchanged. The new VitalityPerSecond setting replaces the obsolete stamina setting and defaults to 1 for existing installations.
+1. Leave combat and let the army dissolve. Save out of combat and quit.
+2. Disable or remove Shadow Monarch in Vortex and deploy again.
+3. Run the legacy file check below before loading your save. You can keep
+   Trophy Necromancy installed and retain its progression.
 
-Every lost member has an independent ten-second replacement cooldown. Combat end cancels replacements and dissolves our units. Quantity, roster and balance changes apply at the next army creation. Disable the army for immediate cleanup. Cramped terrain can omit a slot until safe placement succeeds.
+Legacy file check for older manual installs
 
-Removal: leave combat, let the army dissolve, quit, disable/remove Shadow Monarch and deploy. Keep Trophy Necromancy if desired. Do not edit its progression facts to remove this companion. Reload/uninstall remains a final-test requirement.
+After deploying with all Shadow Monarch versions disabled, check these
+paths relative to your Witcher 3 game folder:
 
-Build: tools/compile.ps1. Combined source check: tools/compile.ps1 -CompatibilityCheck. Its combined blob is verification only and is never shipped. Package: tools/package.ps1. No dependency or diagnostic code is bundled. See spec.md, docs/verification.md and docs/nexus-release.md.
+  Mods/modShadowMonarch/
+  bin/config/r4game/user_config_matrix/pc/modShadowMonarch.xml
 
-Downloaded reference mods are excluded from Git. See docs/reference-sources.md for their locations and the local reference layout needed by the compatibility/string-generation tools.
+Vortex can restore files that were present before it took over deployment.
+If either Shadow Monarch path remains, move it to a backup outside the
+game folder. Leave the Trophy Necromancy folder and XML in place.
 
-Built with The Witcher 3 REDkit, provided by CD PROJEKT RED. This is an unofficial fan mod; game assets and trademarks belong to their respective owners.
+Report bugs with your game build, both mod versions and steps to reproduce:
+https://github.com/range-et/shadow_army-w3_mod/issues/new?template=bug_report.yml
+
+See ShadowMonarch-LICENSE.txt for the MIT license on this project's
+original code.
+Built with The Witcher 3 REDkit, provided by CD PROJEKT RED. This is an
+unofficial fan mod. Game assets, trademarks and separately distributed
+mods belong to their respective owners.

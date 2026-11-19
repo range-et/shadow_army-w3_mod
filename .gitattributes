@@ -1,0 +1,5 @@
+# Preserve the tested line endings of the text files included in the release ZIP.
+/LICENSE text eol=lf
+/README.txt text eol=lf
+/bin/config/r4game/user_config_matrix/pc/modShadowMonarch.xml text eol=lf
+/mods/modShadowMonarch/content/scripts/local/shadow_monarch.ws text eol=lf
