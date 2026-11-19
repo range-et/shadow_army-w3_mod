@@ -194,7 +194,7 @@ class SMController
         DefaultSetting('ArmySize', "4");
         DefaultSetting('DamagePercent', "150");
         DefaultSetting('SizePercent', "75");
-        DefaultSetting('UpkeepPerSecond', "1");
+        DefaultSetting('VitalityPerSecond', "1");
         for(i = 0; i < rosterKeys.Size(); i += 1) DefaultSetting(rosterKeys[i], "0");
     }
 
@@ -257,14 +257,14 @@ class SMController
         count = Setting('ArmySize', 4, 0, 10);
         damageMultiplier = Setting('DamagePercent', 150, 25, 300) / 100.0;
         sizeMultiplier = Setting('SizePercent', 75, 40, 100) / 100.0;
-        upkeep = FloatSetting('UpkeepPerSecond', 1, 0, 5);
+        upkeep = FloatSetting('VitalityPerSecond', 1, 0, 5);
         for(i = 0; i < count; i += 1)
         {
             paths[i] = MonsterPath(Setting(rosterKeys[i], 0, 0, 10));
             templates[i] = NULL;
         }
         encounter = true;
-        LogChannel('ShadowMonarch', "Army begin count=" + count + " upkeep=" + upkeep + " damage=" + damageMultiplier + " scale=" + sizeMultiplier);
+        LogChannel('ShadowMonarch', "Army begin count=" + count + " vitalityPerSecond=" + upkeep + " damage=" + damageMultiplier + " scale=" + sizeMultiplier);
     }
 
     function FloatSetting(id : name, fallback : float, minimum : float, maximum : float) : float
@@ -307,7 +307,7 @@ class SMController
     function Tick(dt : float)
     {
         var i, j, spawned, living : int;
-        var cost : float;
+        var cost, availableHealth : float;
         var target : CActor;
         var trophy : CNewNPC;
         var nearby : array<CActor>;
@@ -330,7 +330,7 @@ class SMController
         }
         if(fatigued)
         {
-            if(clock < recoverAt || player.GetStatPercents(BCS_Stamina) < 0.25) return;
+            if(clock < recoverAt || player.GetStatPercents(BCS_Vitality) < 0.25 || player.GetHealth() <= 1) return;
             fatigued = false;
         }
         if(!encounter) Begin();
@@ -388,18 +388,22 @@ class SMController
                 }
             }
         }
-        cost = living * upkeep * MaxF(0, MinF(dt, 1));
+        // One shared cost for the army, independent of living unit count.
+        // Never touch stamina or its regeneration delay: Signs remain available.
+        cost = 0;
+        if(living > 0) cost = upkeep * MaxF(0, MinF(dt, 1));
         if(cost > 0)
         {
-            if(player.GetStat(BCS_Stamina) <= cost)
+            availableHealth = MaxF(0, player.GetHealth() - 1);
+            if(availableHealth <= cost)
             {
-                player.DrainStamina(ESAT_FixedValue, cost, 0.35);
+                if(availableHealth > 0) player.DrainVitality(availableHealth);
                 fatigued = true;
                 recoverAt = clock + 10;
                 Cleanup(false);
-                LogChannel('ShadowMonarch', "Army exhausted; recovery requires 10 seconds and 25 percent stamina");
+                LogChannel('ShadowMonarch', "Army dismissed at vitality floor; recovery requires 10 seconds and 25 percent vitality");
             }
-            else player.DrainStamina(ESAT_FixedValue, cost, 0.35);
+            else player.DrainVitality(cost);
         }
     }
 

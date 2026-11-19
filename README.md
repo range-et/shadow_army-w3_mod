@@ -12,7 +12,7 @@ After installation, load a game once to initialize missing settings. Open Settin
 
 Choices: Wraith, Nekker, Ghoul, Drowner, Arachas, Wyvern, Chort, Fiend, Cockatrice, Griffin and Archgriffin. All are generic base-game templates; each new choice still needs gameplay validation.
 
-Defaults: four wraiths, 150% army damage, 75% visual size and **one stamina per living unit per second**. Set upkeep between 0 and 5 stamina per unit per second; 0 disables it. Ten living units cost ten stamina/second. Running out dissolves only our army, which returns after at least ten seconds and 25% stamina recovery. These controls do not change Trophy Necromancy's summon.
+Defaults: four wraiths, 150% army damage, 75% visual size and **one vitality point per second for the entire army**, regardless of unit count. Set upkeep between 0 and 5 vitality/second; 0 disables it. Upkeep never consumes stamina or delays its regeneration, so Signs remain available. It applies only while at least one army unit is alive in eligible combat. At one vitality, only our army dissolves; it returns after at least ten seconds and 25% vitality recovery (and more than one vitality). Upkeep cannot kill Geralt. Trophy Necromancy's own summon costs are unchanged. The new VitalityPerSecond setting replaces the obsolete stamina setting and defaults to 1 for existing installations.
 
 Every lost member has an independent ten-second replacement cooldown. Combat end cancels replacements and dissolves our units. Quantity, roster and balance changes apply at the next army creation. Disable the army for immediate cleanup. Cramped terrain can omit a slot until safe placement succeeds.
 

@@ -9,7 +9,7 @@
 2146700005||option_SM_ArmySize|Army size (plus the trophy summon)
 2146700006||option_SM_DamagePercent|Army damage (%)
 2146700007||option_SM_SizePercent|Army size scale (%)
-2146700008||option_SM_UpkeepPerSecond|Stamina per unit / second (0 disables)
+2146700008||option_SM_VitalityPerSecond|Vitality / second for whole army (0 disables)
 2146700009||option_SM_Unit1|Army unit 1
 2146700010||option_SM_Unit2|Army unit 2
 2146700011||option_SM_Unit3|Army unit 3

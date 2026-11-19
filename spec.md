@@ -19,7 +19,7 @@ Both mods must be installed and enabled. Own, read and equip the original necrom
 | Unit 1 … Unit 10 | Generic monster selector | Wraith |
 | Army damage | 25–300% | 150% |
 | Army size scale | 40–100% | 75% |
-| Stamina upkeep | 0–5 stamina per living unit per second | 1 stamina/unit/second |
+| Vitality upkeep | 0–5 vitality points per second for the entire army | 1 vitality/second |
 
 Only the first Army size slots are active. Four wraiths and two nekkers: size six, slots 1–4 Wraith, slots 5–6 Nekker. Size zero permits the original trophy summon alone. Roster, quantity, damage, scale and upkeep snapshot at the next army creation. Disabling cleans up immediately. Clamp numeric values; missing settings use defaults. Retire WraithCount.
 
@@ -33,16 +33,16 @@ All eleven template files exist in installed REDkit. Existence and compilation d
 - Use smOwned/sm_shadow_unit and PM_DontPersist only for our actors. Never enroll them in TrophyNecromancy_npc/ent tags.
 - Exclude the dependency's tagged summon/entities/doppelgangers from enemy selection; establish mutual friendship with its leader.
 - Block direct friendly damage between both systems and among our army units. Apply our damage bonus only to positive processed damage from an owned attacker against a hostile. Do not stack our bonus onto the trophy summon.
-- Keep replacement deadlines, stamina costs and cleanup separate. Never change the dependency's counters, progression, health costs, immortality or leader lifecycle.
+- Keep replacement deadlines, upkeep costs and cleanup separate. Never change the dependency's counters, progression, health costs, immortality or leader lifecycle.
 - Keep dependency files/settings independent. Do not redistribute its source, compiled patch or localization. Combined-source compilation is a verification artifact only, never the shipping blob.
 
 ## Balance
 
-Charge stamina only for living, active army units during eligible combat. Default four units cost four stamina/second; ten cost ten. This is additional to the dependency's own costs. Zero disables upkeep. Use native DrainStamina(ESAT_FixedValue) and a short native regeneration delay. Do not charge dead, missing, fading or cooldown slots, or charge while paused/out of combat.
+Charge one shared vitality cost only while at least one army unit is living and active during eligible combat. Default: **one vitality point per second for the entire army**, identical for one, four or ten units. This is additional to the dependency's own costs. Zero disables upkeep. Use native DrainVitality; never drain stamina or modify stamina regeneration. Do not charge while all slots are dead, missing, fading or on cooldown, or while paused/out of combat. Use the new VitalityPerSecond setting (default 1, range 0–5); ignore the obsolete UpkeepPerSecond value to avoid reinterpreting saved stamina choices.
 
-If stamina cannot cover upkeep, dissolve only our army. Require at least **ten seconds and 25% stamina** to rearm; preserve per-slot deadlines and prevent immediate collapse/respawn loops. Native regeneration resumes after the short delay; do not rewrite global regeneration.
+Clamp each payment to available vitality above one point. If the payment reaches that floor, dissolve only our army. Require at least **ten seconds, 25% vitality and more than one vitality** to rearm; preserve per-slot deadlines and prevent immediate collapse/respawn loops. Upkeep cannot kill Geralt and must not heal him if his vitality is already below one. Enemy attacks and the dependency retain their own damage/cost behavior.
 
-Match Geralt's level at creation. Preserve native combat inventory/monster weapons; suppress summon loot through clearInvOnDeath. Apply size to the same animated/mesh component types used by the reference. Visual scale does not prove a proportional collision capsule. Keep configurable damage and stamina settings limited to our units.
+Match Geralt's level at creation. Preserve native combat inventory/monster weapons; suppress summon loot through clearInvOnDeath. Apply size to the same animated/mesh component types used by the reference. Visual scale does not prove a proportional collision capsule. Keep configurable damage and upkeep settings limited to our units.
 
 ## Combat lifecycle and placement
 
@@ -56,7 +56,7 @@ Use five paired flank rows for ten units. Prefer formation, then four bounded al
 
 1. Replace fixed roster/implicit leader with ten configurable army slots.
 2. Add dependency activation, ally exclusions and damage handling while retaining wrapped calls.
-3. Add stamina upkeep/recovery and bounded damage/size controls.
+3. Add shared vitality upkeep/recovery and bounded damage/size controls.
 4. Compile production and a separate combined-source compatibility check; validate XML and archive contents.
 5. Install both production mods in a disposable profile and complete acceptance below. Restore production after diagnostics; never save test immortality/book grants to a real save.
 6. Prepare Nexus description, dependency requirement, credits/license and changelog. Publish only after acceptance and explicit upload authorization.
@@ -70,7 +70,7 @@ Use five paired flank rows for ten units. Prefer formation, then four bounded al
 | Configuration | Sizes 0/1/4/10, mixed roster, unused slots, invalid values, settings persistence and next-encounter changes; never over ten owned army actors including fade windows. |
 | Every monster | Safe placement, actual native health loss/incoming damage, scale/animations, death, no unowned children or summon loot/XP farming. |
 | Allies/rewards | Neither mod selects or damages the other's units; verify no duplicate rewards or unintended progression effects. |
-| Upkeep | Compare 1/4/10 living units; exclude dead/cooldown/fading slots and pauses; zero cost option; exhaustion affects army only; rearm after ten seconds AND 25% stamina. |
+| Upkeep | Compare 1/4/10 living units: all cost 1 vitality/second by default; no stamina drain or regeneration delay; verify Signs still cast. Exclude all-dead/cooldown/fading states and pauses; zero cost option; clamp to one vitality without killing/healing Geralt; dismiss army only; rearm after ten seconds AND 25% vitality AND more than one vitality. Verify migration ignores old stamina settings. |
 | Independent loss | Stagger two deaths; replacements respect separate ten-second deadlines and preserve survivors. |
 | Cleanup | Combat end during cooldown, scenes/travel/teleport/swimming/death/disable: zero owned actors and no late spawns. |
 | Road benchmark | Four wraiths plus original trophy leader versus two same-level mortal drowners, idle Geralt. Log health loss/time/stamina/settings; target roughly twenty seconds, not a claim based on one fast run. |

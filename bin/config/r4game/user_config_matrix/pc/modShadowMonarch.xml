@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <UserConfig><Group id="ShadowMonarch" displayName="Mods.miscellaneous.ShadowMonarch.ShadowMonarchArmy">
-<PresetsArray><Preset id="0" displayName="SM_Default"><Entry varId="Enabled" value="true"/><Entry varId="ArmySize" value="4"/><Entry varId="DamagePercent" value="150"/><Entry varId="SizePercent" value="75"/><Entry varId="UpkeepPerSecond" value="1"/>
+<PresetsArray><Preset id="0" displayName="SM_Default"><Entry varId="Enabled" value="true"/><Entry varId="ArmySize" value="4"/><Entry varId="DamagePercent" value="150"/><Entry varId="SizePercent" value="75"/><Entry varId="VitalityPerSecond" value="1"/>
 <Entry varId="Unit1" value="0"/>
 <Entry varId="Unit2" value="0"/>
 <Entry varId="Unit3" value="0"/>
@@ -16,7 +16,7 @@
 <Var id="ArmySize" displayName="SM_ArmySize" displayType="SLIDER;0;10;10"/>
 <Var id="DamagePercent" displayName="SM_DamagePercent" displayType="SLIDER;25;300;275"/>
 <Var id="SizePercent" displayName="SM_SizePercent" displayType="SLIDER;40;100;60"/>
-<Var id="UpkeepPerSecond" displayName="SM_UpkeepPerSecond" displayType="SLIDER;0;5;50"/>
+<Var id="VitalityPerSecond" displayName="SM_VitalityPerSecond" displayType="SLIDER;0;5;50"/>
 <Var id="Unit1" displayName="SM_Unit1" displayType="OPTIONS"><OptionsArray>
 <Option id="0" displayName="SM_Wraith"><Entry varId="Unit1" value="0"/></Option>
 <Option id="1" displayName="SM_Nekker"><Entry varId="Unit1" value="1"/></Option>

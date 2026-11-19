@@ -1,5 +1,22 @@
 // Observer only. No enemies, book grants, immortality or eligibility overrides.
 // Install only for disposable-save tests, alongside the real Trophy Necromancy.
+@wrapMethod(CActor)
+function DrainVitality(amount : float)
+{
+    var before : float;
+    before = GetHealth();
+    wrappedMethod(amount);
+    if(this == thePlayer)
+        LogChannel('ShadowMonarch', "UPKEEP vitality request=" + amount + " before=" + before + " after=" + GetHealth());
+}
+
+@wrapMethod(W3PlayerWitcher)
+function OnSignCastPerformed(signType : ESignType, isAlternate : bool)
+{
+    wrappedMethod(signType, isAlternate);
+    LogChannel('ShadowMonarch', "SIGN performed=" + signType + " combat=" + IsInCombat() + " stamina=" + GetStat(BCS_Stamina));
+}
+
 @addField(W3PlayerWitcher)
 var smObserverTime : float;
 
@@ -33,7 +50,7 @@ timer function SMCompanionObserver(dt : float, id : int)
     LogChannel('ShadowMonarch', "COMPANION t=" + smObserverTime + " combat=" + IsInCombat()
         + " eligible=" + c.Eligible() + " living=" + living + " fading=" + fading
         + " world=" + entities.Size() + " configured=" + c.count
-        + " stamina=" + GetStat(BCS_Stamina) + " fatigued=" + c.fatigued
+        + " vitality=" + GetHealth() + " stamina=" + GetStat(BCS_Stamina) + " fatigued=" + c.fatigued
         + " trophy=" + trophy + " x=" + position.X + " y=" + position.Y + " z=" + position.Z);
 }
 

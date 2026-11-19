@@ -37,8 +37,8 @@ function SMITConfigure(phase : int)
     theGame.GetInGameConfigWrapper().SetVarValue('ShadowMonarch', 'Enabled', "true");
     theGame.GetInGameConfigWrapper().SetVarValue('ShadowMonarch', 'DamagePercent', "150");
     theGame.GetInGameConfigWrapper().SetVarValue('ShadowMonarch', 'SizePercent', "75");
-    theGame.GetInGameConfigWrapper().SetVarValue('ShadowMonarch', 'UpkeepPerSecond', "1");
-    if(phase == 7) theGame.GetInGameConfigWrapper().SetVarValue('ShadowMonarch', 'UpkeepPerSecond', "0");
+    theGame.GetInGameConfigWrapper().SetVarValue('ShadowMonarch', 'VitalityPerSecond', "1");
+    if(phase == 7) theGame.GetInGameConfigWrapper().SetVarValue('ShadowMonarch', 'VitalityPerSecond', "0");
     for(i = 0; i < c.rosterKeys.Size(); i += 1)
     {
         theGame.GetInGameConfigWrapper().SetVarValue('ShadowMonarch', c.rosterKeys[i], "0");
@@ -139,7 +139,7 @@ timer function SMIntegrationSequence(dt : float, id : int)
         smITKeys.PushBack('ArmySize');
         smITKeys.PushBack('DamagePercent');
         smITKeys.PushBack('SizePercent');
-        smITKeys.PushBack('UpkeepPerSecond');
+        smITKeys.PushBack('VitalityPerSecond');
         for(i = 0; i < c.rosterKeys.Size(); i += 1) smITKeys.PushBack(c.rosterKeys[i]);
         for(i = 0; i < smITKeys.Size(); i += 1) smITValues.PushBack(theGame.GetInGameConfigWrapper().GetVarValue('ShadowMonarch', smITKeys[i]));
         SetImmortalityMode(AIM_Immortal, AIC_Default, true);
